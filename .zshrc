@@ -12,7 +12,7 @@
 #  /_____ \/____  >___|  /__|    \___  >                    
 #        \/     \/     \/            \/                     
 #
-
+#============================================================
 # Core
 export ZSH="/Users/padoelkemid/.oh-my-zsh"
 ZSH_THEME="spaceship"
@@ -37,6 +37,8 @@ alias v="nvim"
 alias zconf="nvim ~/.zshrc"
 alias ls="colorls -A --sd"
 alias szconf="source ~/.zshrc"
+alias ybconf="nvim ~/.yabairc"
+alias skconf="nvim ~/.skhdrc"
 
 # Dotfiles Config
 alias df='/usr/local/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
