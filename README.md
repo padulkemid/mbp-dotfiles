@@ -1,2 +1,3 @@
-# mbp-dotfiles
-different dotfiles from my another spaceship
+# No comply
+
+kickflip, and then BS smith, shuvit out.
