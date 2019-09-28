@@ -28,17 +28,18 @@ export EDITOR=nvim
 
 # Aliases
 alias c="clear"
-alias x="exit"
 alias cat="bat"
-alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
-alias man="tldr"
-alias v="nvim"
-alias zconf="nvim ~/.zshrc"
 alias ls="colorls -A --sd"
-alias szconf="source ~/.zshrc"
-alias ybconf="nvim ~/.yabairc"
-alias skconf="nvim ~/.skhdrc"
+alias man="tldr"
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+alias skc="nvim ~/.skhdrc"
+alias szc="source ~/.zshrc"
+alias v="nvim"
+alias vc="nvim ~/.config/nvim/init.vim"
+alias x="exit"
+alias ybc="nvim ~/.yabairc"
+alias zc="nvim ~/.zshrc"
 
 # Dotfiles Config
 alias df='/usr/local/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
