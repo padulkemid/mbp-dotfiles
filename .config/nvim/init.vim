@@ -22,6 +22,7 @@ set number
 set history=1000
 set showcmd
 set showmode
+set signcolumn=yes
 set hidden
 set updatetime=100
 let mapleader=","
@@ -32,6 +33,8 @@ set encoding=utf-8
 set formatoptions=tcrq
 set shortmess+=c
 set autoread
+set nobackup
+set nowritebackup
 "}}}
 
 " Color
@@ -60,13 +63,18 @@ set laststatus=2
 
 " Fold
 "{{{
-set foldmethod=marker
+set foldmethod=manual
+
+augroup filetype_vim
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
+augroup END
 
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+au BufWinLeave *.* mkview
+au BufWinEnter *.* silent loadview
 "}}}
 
 " Indentation
@@ -102,15 +110,6 @@ xmap <C-c> "*y
 xmap <C-v> "*p
 "}}}
 
-" Persistent Undo
-"{{{
-if has('persistent_undo') && !isdirectory(expand('~').'/.config/nvim/backups')
-	silent !mkdir ~/.config/nvim/backups > /dev/null 2>&1
-	set undodir=~/.config/nvim/backups
-	set undofile
-endif
-"}}}
-
 "============================================================
 
 " Plugins
@@ -124,9 +123,8 @@ Plug 'tpope/vim-commentary'
 
 " Utilites
 Plug 'scrooloose/nerdtree'
-Plug 'jiangmiao/auto-pairs'
-Plug 'prettier/vim-prettier', { 'do' : 'npm install' }
 Plug 'airblade/vim-gitgutter'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Web
 Plug 'mattn/emmet-vim'
@@ -148,24 +146,8 @@ call plug#end()
 " Plugin Configurations
 "{{{
 
-" Prettier
-let g:prettier#config#print_width=100
-let g:prettier#config#tab_width=2
-let g:prettier#config#use_tabs='false'
-let g:prettier#config#semi='true'
-let g:prettier#config#single_quote='true'
-let g:prettier#config#bracket_spacing='false'
-let g:prettier#config#jsx_bracket_same_line='true'
-let g:prettier#config#arrow_parens='always'
-let g:prettier#config#trailing_comma='es5'
-let g:prettier#config#parser='flow'
-let g:prettier#config#config_precedence='prefer-file'
-let g:prettier#config#prose_wrap='preserve'
-let g:prettier#config#html_whitespace_sensitivity='css'
-
-nmap <leader>p :PrettierAsync<CR>
-
 " NERDTree
+"{{{
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['DS_Store', 'node_modules', 'vendor']
 let NERDTreeShowLineNumbers=1
@@ -174,15 +156,111 @@ let g:NERDTreeDirArrowExpandable = '↠'
 let g:NERDTreeDirArrowCollapsible = '↡'
 
 nmap \ :NERDTreeToggle<CR>
+"}}}
 
 " IndentLine
+"{{{
 let g:indentLine_char = '▏'
 let g:indentLine_color_gui = '#363949'
+"}}}
 
 " Airline
+"{{{
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline_theme='papercolor'
+"}}}
 
+" CoC Nvim
+"{{{
+
+"" Core
+"{{{
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+nmap <leader>rn <Plug>(coc-rename)
+
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>p :Prettier<CR>
+nmap <leader>p :Prettier<CR>
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+nmap <silent> <C-d> <Plug>(coc-range-select)
+xmap <silent> <C-d> <Plug>(coc-range-select)
+
+command! -nargs=0 Format :call CocAction('format')
+
+command! -nargs=0 OR   :call CocAction('runCommand', 'editor.action.organizeImport')
+
+nnoremap <silent> <C-9>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <C-9>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <C-9>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <C-9>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <C-9>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <C-9>j  :<C-u>CocNext<CR>
+nnoremap <silent> <C-9>k  :<C-u>CocPrev<CR>
+nnoremap <silent> <C-9>p  :<C-u>CocListResume<CR>
+"}}}
+
+"" Airline Coc
+"{{{
+
+let g:airline#extensions#coc#enabled = 1
+let airline#extensions#coc#error_symbol = 'E:'
+let airline#extensions#coc#warning_symbol = 'W:'
+let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
 "}}}
+
+"}}}
+
+" Emmet
+let g:user_emmet_leader_key='ee'
+
+"}}}
+
