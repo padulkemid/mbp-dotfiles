@@ -126,12 +126,19 @@ Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Tmux
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'edkolev/tmuxline.vim'
+
 " Web
 Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'mxw/vim-jsx'
 Plug 'posva/vim-vue'
+
+" Go
+Plug 'fatih/vim-go', {'do':':GoUpdateBinaries'}
 
 " Aesthetics
 Plug 'NLKNguyen/papercolor-theme'
@@ -257,10 +264,13 @@ let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
 "}}}
 
+"" Go
+let g:go_def_mapping_enabled = 0
+
 "}}}
 
 " Emmet
-let g:user_emmet_leader_key='ee'
+let g:user_emmet_leader_key='``'
 
 "}}}
 
