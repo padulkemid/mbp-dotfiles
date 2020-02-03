@@ -269,8 +269,6 @@ let g:go_def_mapping_enabled = 0
 
 "}}}
 
-" Emmet
-let g:user_emmet_leader_key='``'
 
 "}}}
 
