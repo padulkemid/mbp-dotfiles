@@ -74,3 +74,7 @@ export PATH=$PATH:$JAVA_HOME
 export GOPATH=$HOME/Gitgud/gondar
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH:$GOBIN
+
+## Node
+export NODE_OPTIONS=--max_old_space_size=4096
+
