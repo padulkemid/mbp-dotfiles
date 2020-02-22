@@ -47,6 +47,7 @@ alias x="exit"
 alias ybc="nvim ~/.yabairc"
 alias zc="nvim ~/.zshrc"
 alias please="sudo"
+alias pohon="tree"
 
 # Dotfiles Config
 alias df='/usr/local/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'

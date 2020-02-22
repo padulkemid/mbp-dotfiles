@@ -146,6 +146,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
+Plug 'frazrepo/vim-rainbow'
 
 call plug#end()
 "}}}
@@ -269,6 +270,12 @@ let g:go_def_mapping_enabled = 0
 
 "}}}
 
+" Rainbow
+" {{{
+
+let g:rainbow_active = 1
+
+"}}}
 
 "}}}
 
