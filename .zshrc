@@ -48,6 +48,7 @@ alias ybc="nvim ~/.yabairc"
 alias zc="nvim ~/.zshrc"
 alias please="sudo"
 alias pohon="tree"
+alias kholid="echo 'kholid al mas fikr si fuccboye'"
 
 # Dotfiles Config
 alias df='/usr/local/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
