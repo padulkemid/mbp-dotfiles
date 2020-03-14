@@ -2,7 +2,7 @@
 
 kickflip, and then BS smith, shuvit out.
 
-![lovely night](https://pbs.twimg.com/media/EGefNcMUUAA7Jua?format=jpg&name=large)
+![lovely night](https://imgur.com/a/cv1ccjm)
 
 ### Special features:
 *yabai wm ( similar to i3-gaps in linux ) and skhd ( hotkey daemon )*
