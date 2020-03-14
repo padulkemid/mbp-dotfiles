@@ -20,6 +20,7 @@ set nocompatible
 set relativenumber
 set number
 set history=1000
+set undolevels=100
 set showcmd
 set showmode
 set signcolumn=yes
@@ -35,16 +36,16 @@ set shortmess+=c
 set autoread
 set nobackup
 set nowritebackup
+set cursorline
 "}}}
 
 " Color
 "{{{
 syntax on
-
-"" For Papercolor
-set t_Co=256
-set background=light
-colorscheme PaperColor
+let g:one_allow_italics=1
+set termguicolors
+colorscheme one
+set background=dark
 
 nmap <silent> <leader><leader> :noh<CR>
 "}}}
@@ -106,6 +107,8 @@ set wildignore+=*/vendor/*
 set wildignore+=*/git/*
 set wildmenu
 
+" not to be confused with escape from insert mode
+inoremap <C-c> <Esc>
 xmap <C-c> "*y
 xmap <C-v> "*p
 "}}}
@@ -120,6 +123,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat'
 
 " Utilites
 Plug 'scrooloose/nerdtree'
@@ -127,26 +132,20 @@ Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Tmux
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 
 " Web
 Plug 'mattn/emmet-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'mxw/vim-jsx'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'posva/vim-vue'
 
-" Go
-Plug 'fatih/vim-go', {'do':':GoUpdateBinaries'}
-
 " Aesthetics
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'rakr/vim-one'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
-Plug 'frazrepo/vim-rainbow'
 
 call plug#end()
 "}}}
@@ -176,7 +175,8 @@ let g:indentLine_color_gui = '#363949'
 "{{{
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
-let g:airline_theme='papercolor'
+let g:airline#extensions#tmuxline#enabled=0
+let g:airline_theme='onedark'
 "}}}
 
 " CoC Nvim
@@ -265,17 +265,6 @@ let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
 "}}}
 
-"" Go
-let g:go_def_mapping_enabled = 0
-
-"}}}
-
-" Rainbow
-" {{{
-
-let g:rainbow_active = 1
-
-"}}}
 
 "}}}
 
