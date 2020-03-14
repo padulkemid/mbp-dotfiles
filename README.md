@@ -7,7 +7,7 @@ kickflip, and then BS smith, shuvit out.
 ### Special features:
 *yabai wm ( similar to i3-gaps in linux ) and skhd ( hotkey daemon )* :
 ( *preview* )
-![yabai + tmux+ nvim](https://i.imgur.com/o9yQc5O.mp4)
+[yabai + tmux+ nvim](https://imgur.com/a/xbdRl5J)
 
 ### Another key-features:
 for you ultra-cool vim users!
