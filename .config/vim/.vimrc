@@ -79,12 +79,12 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 " Plugins
 call plug#begin('~/.vim/plugged/')
 
-Plug 'mattn/emmet-vim'
-Plug 'yuezk/vim-js'
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'fatih/vim-go'
 Plug 'rakr/vim-one'
 
 
 call plug#end()
 
+" vim-go
+let g:go_fmt_autosave=0
 
