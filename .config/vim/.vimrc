@@ -79,6 +79,7 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 " Plugins
 call plug#begin('~/.vim/plugged/')
 
+Plug 'mattn/emmet-vim'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'rakr/vim-one'
