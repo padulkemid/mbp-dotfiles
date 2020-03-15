@@ -126,16 +126,17 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 
+" Godsense
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " Utilites
 Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Tmux
 Plug 'edkolev/tmuxline.vim'
 
 " Web
-Plug 'mattn/emmet-vim'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'posva/vim-vue'
