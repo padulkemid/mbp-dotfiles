@@ -19,8 +19,6 @@ set nocompatible
 " {{{
 set relativenumber
 set number
-set history=1000
-set undolevels=100
 set showcmd
 set showmode
 set signcolumn=yes
@@ -36,7 +34,14 @@ set shortmess+=c
 set autoread
 set nobackup
 set nowritebackup
-set cursorline
+"}}}
+
+" Undo
+"{{{
+set history=1000
+set undolevels=100
+set undoreload=1000
+set undodir=~/.config/nvim/undodir
 "}}}
 
 " Color
@@ -73,9 +78,6 @@ augroup END
 
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
-
-au BufWinLeave *.* mkview
-au BufWinEnter *.* silent loadview
 "}}}
 
 " Indentation
@@ -263,6 +265,8 @@ let airline#extensions#coc#error_symbol = 'E:'
 let airline#extensions#coc#warning_symbol = 'W:'
 let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
 let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+
+"}}}
 
 "}}}
 
