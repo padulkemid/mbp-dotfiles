@@ -39,6 +39,7 @@ set nowritebackup
 " Undo
 "{{{
 set history=1000
+set undofile
 set undolevels=100
 set undoreload=1000
 set undodir=~/.config/nvim/undodir
@@ -47,7 +48,6 @@ set undodir=~/.config/nvim/undodir
 " Color
 "{{{
 syntax on
-let g:one_allow_italics=1
 set termguicolors
 colorscheme one
 set background=dark
@@ -134,6 +134,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Utilites
 Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
+Plug 'honza/vim-snippets'
 
 " Tmux
 Plug 'edkolev/tmuxline.vim'
@@ -273,3 +274,19 @@ let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
 "}}}
 
+
+"============================================================
+
+" Custom Commands
+"{{{
+
+" Tags
+command MakeTags !ctags -R .
+
+" Typo
+command W :w
+command Q :q
+
+" ejs
+au BufNewFile, BufRead *.ejs set filetype=html
+"}}}
