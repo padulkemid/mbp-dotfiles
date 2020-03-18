@@ -286,6 +286,7 @@ command MakeTags !ctags -R .
 " Typo
 command W :w
 command Q :q
+comman Wq :wq
 
 " ejs
 au BufNewFile, BufRead *.ejs set filetype=html
