@@ -49,8 +49,7 @@ set undodir=~/.config/nvim/undodir
 "{{{
 syntax on
 set termguicolors
-colorscheme one
-set background=dark
+colorscheme seoul256-light
 
 nmap <silent> <leader><leader> :noh<CR>
 "}}}
@@ -64,7 +63,28 @@ set smartcase
 set infercase
 set endofline
 set backspace=indent,eol,start
+"}}}
+
+" Statusline
+"{{{
 set laststatus=2
+
+" "" Display format
+function! s:statusline_expr()
+  let pur = "%#PmenuSel#"
+  let gra = "%#LineNr#"
+  let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
+  let ro  = "%{&readonly ? '[RO] ' : ''}"
+  let ft  = " %{len(&filetype) ? '['.&filetype.'] ' : ''}"
+  let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : 'aury'}"
+  let sep = ' %= '
+  let pos = ' %-12(%l : %c%V%) '
+  let pct = ' %P '
+
+
+  return pur.' aury '.'%*'.' [%n] %f %<'.mod.gra.ro.ft.fug.sep.pos.'%*'.pct
+endfunction
+let &statusline = s:statusline_expr()
 "}}}
 
 " Fold
@@ -136,18 +156,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'honza/vim-snippets'
 
-" Tmux
-Plug 'edkolev/tmuxline.vim'
-
 " Web
-Plug 'yuezk/vim-js'
+Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'posva/vim-vue'
 
 " Aesthetics
-Plug 'rakr/vim-one'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/seoul256.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
 
@@ -156,6 +170,11 @@ call plug#end()
 
 " Plugin Configurations
 "{{{
+
+" vim-javascript
+"{{{
+  let g:vim_jsx_pretty_colorful_config=1
+"}}}
 
 " NERDTree
 "{{{
@@ -171,16 +190,8 @@ nmap \ :NERDTreeToggle<CR>
 
 " IndentLine
 "{{{
-let g:indentLine_char = '▏'
-let g:indentLine_color_gui = '#363949'
-"}}}
-
-" Airline
-"{{{
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tmuxline#enabled=0
-let g:airline_theme='onedark'
+let g:indentLine_char='▏'
+let g:indentLine_color_gui='#5f875f'
 "}}}
 
 " CoC Nvim
@@ -202,9 +213,6 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -221,52 +229,9 @@ function! s:show_documentation()
 endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-nmap <leader>rn <Plug>(coc-rename)
-
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-xmap <leader>p :Prettier<CR>
-nmap <leader>p :Prettier<CR>
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-nmap <leader>ac  <Plug>(coc-codeaction)
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-nmap <silent> <C-d> <Plug>(coc-range-select)
-xmap <silent> <C-d> <Plug>(coc-range-select)
-
 command! -nargs=0 Format :call CocAction('format')
-
 command! -nargs=0 OR   :call CocAction('runCommand', 'editor.action.organizeImport')
-
-nnoremap <silent> <C-9>a  :<C-u>CocList diagnostics<cr>
-nnoremap <silent> <C-9>e  :<C-u>CocList extensions<cr>
-nnoremap <silent> <C-9>c  :<C-u>CocList commands<cr>
-nnoremap <silent> <C-9>o  :<C-u>CocList outline<cr>
-nnoremap <silent> <C-9>s  :<C-u>CocList -I symbols<cr>
-nnoremap <silent> <C-9>j  :<C-u>CocNext<CR>
-nnoremap <silent> <C-9>k  :<C-u>CocPrev<CR>
-nnoremap <silent> <C-9>p  :<C-u>CocListResume<CR>
-"}}}
-
-"" Airline Coc
-"{{{
-
-let g:airline#extensions#coc#enabled = 1
-let airline#extensions#coc#error_symbol = 'E:'
-let airline#extensions#coc#warning_symbol = 'W:'
-let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
-
 "}}}
 
 "}}}
@@ -289,5 +254,7 @@ command Q :q
 comman Wq :wq
 
 " ejs
-au BufNewFile, BufRead *.ejs set filetype=html
+autocmd BufNewFile *.ejs set filetype=html
+autocmd BufRead *.ejs set filetype=html
 "}}}
+
