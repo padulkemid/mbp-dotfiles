@@ -28,8 +28,7 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-colorscheme one
-set background=dark
+colorscheme seoul256-light
 
 " Indent
 set autoindent
@@ -46,10 +45,30 @@ set ff=unix
 " backspace cursor to inserted indentation
 set bs=2
 
-" Window display
+" pastetoggle
+set pastetoggle=<F2>
+
+" window display
 set showcmd
 set ruler
 set laststatus=2
+
+"" statusline format
+function! s:statusline_expr()
+  let pur = "%#PmenuSel#"
+  let gra = "%#LineNr#"
+  let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
+  let ro  = "%{&readonly ? '[RO] ' : ''}"
+  let ft  = " %{len(&filetype) ? '['.&filetype.'] ' : ''}"
+  let sep = ' %= '
+  let pos = ' %-12(%l : %c%V%) '
+  let pct = ' %P '
+
+
+  return pur.' aury '.'%*'.' [%n] %f %<'.mod.gra.ro.ft.sep.pos.'%*'.pct
+endfunction
+let &statusline = s:statusline_expr()
+
 
 " Fuzzy search
 set path+=**
@@ -80,7 +99,7 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 call plug#begin('~/.vim/plugged/')
 
 Plug 'fatih/vim-go'
-Plug 'rakr/vim-one'
+Plug 'junegunn/seoul256.vim'
 
 
 call plug#end()
