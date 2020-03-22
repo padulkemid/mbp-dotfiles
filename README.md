@@ -5,7 +5,7 @@ kickflip, and then BS smith, shuvit out.
 *good night!*
 ![lovely night](https://i.imgur.com/3DL0DDB.png)
 
-*new config and prompt
+*new config and prompt*
 ![fú](https://i.imgur.com/iysnDNb.png)
 
 
