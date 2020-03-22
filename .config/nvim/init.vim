@@ -32,8 +32,12 @@ set encoding=utf-8
 set formatoptions=tcrq
 set shortmess+=c
 set autoread
+set autowrite
 set nobackup
 set nowritebackup
+set splitright
+set splitbelow
+set fileformats=unix,dos,mac
 "}}}
 
 " Undo
@@ -71,18 +75,18 @@ set laststatus=2
 
 " "" Display format
 function! s:statusline_expr()
-  let pur = "%#PmenuSel#"
-  let gra = "%#LineNr#"
-  let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
-  let ro  = "%{&readonly ? '[RO] ' : ''}"
-  let ft  = " %{len(&filetype) ? '['.&filetype.'] ' : ''}"
-  let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : 'aury'}"
-  let sep = ' %= '
-  let pos = ' %-12(%l : %c%V%) '
-  let pct = ' %P '
+let pur = "%#PmenuSel#"
+let gra = "%#LineNr#"
+let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
+let ro  = "%{&readonly ? '[RO] ' : ''}"
+let ft  = " %{len(&filetype) ? '['.&filetype.'] ' : ''}"
+let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : 'aury'}"
+let sep = ' %= '
+let pos = ' %-12(%l : %c%V%) '
+let pct = ' %P '
 
 
-  return pur.' aury '.'%*'.' [%n] %f %<'.mod.gra.ro.ft.fug.sep.pos.'%*'.pct
+return pur.' aury '.'%*'.' [%n] %f %<'.mod.gra.ro.ft.fug.sep.pos.'%*'.pct
 endfunction
 let &statusline = s:statusline_expr()
 "}}}
@@ -92,8 +96,8 @@ let &statusline = s:statusline_expr()
 set foldmethod=manual
 
 augroup filetype_vim
-  autocmd!
-  autocmd FileType vim setlocal foldmethod=marker
+autocmd!
+autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -135,13 +139,43 @@ xmap <C-c> "*y
 xmap <C-v> "*p
 "}}}
 
+" Macros
+"{{{
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+noremap <C-d> <C-d>zz
+noremap <C-u> <C-u>zz
+
+nnoremap H ^
+nnoremap L $
+vnoremap H ^
+vnoremap L g_
+
+map q: :q
+
+nmap <leader>tn :tabn<CR>
+nmap <leader>te :tabe<CR>
+nmap <leader>tc :tabc<CR>
+
+" command dewa, hati-hati
+nmap <leader>f :find<space>
+
+"}}}
+
 "============================================================
 
 " Plugins
 "{{{
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Almighty Vim God of All
+" Vim Omnipotent Being
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -163,7 +197,6 @@ Plug 'maxmellon/vim-jsx-pretty'
 " Aesthetics
 Plug 'junegunn/seoul256.vim'
 Plug 'Yggdroot/indentLine'
-Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 "}}}
@@ -173,7 +206,7 @@ call plug#end()
 
 " vim-javascript
 "{{{
-  let g:vim_jsx_pretty_colorful_config=1
+let g:vim_jsx_pretty_colorful_config=1
 "}}}
 
 " NERDTree
@@ -199,15 +232,16 @@ let g:indentLine_color_gui='#5f875f'
 
 "" Core
 "{{{
+set pumheight=10
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -221,11 +255,11 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+if (index(['vim','help'], &filetype) >= 0)
+  execute 'h '.expand('<cword>')
+else
+  call CocAction('doHover')
+endif
 endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -256,5 +290,6 @@ comman Wq :wq
 " ejs
 autocmd BufNewFile *.ejs set filetype=html
 autocmd BufRead *.ejs set filetype=html
+
 "}}}
 
