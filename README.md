@@ -5,13 +5,8 @@ kickflip, and then BS smith, shuvit out.
 *good night!*
 ![lovely night](https://i.imgur.com/3DL0DDB.png)
 
-
-*some init.vim*
-![init vim](https://i.imgur.com/xAlJb3t.png)
-
-
-*viewing some JS file*
-![editing js](https://i.imgur.com/vzdgkfr.png)
+*new config and prompt
+![fú](https://i.imgur.com/iysnDNb.png)
 
 
 ### Special features:
