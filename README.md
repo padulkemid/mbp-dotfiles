@@ -6,11 +6,12 @@ kickflip, and then BS smith, shuvit out.
 ![lovely night](https://i.imgur.com/3DL0DDB.png)
 
 *new config and prompt*
-![fú](https://i.imgur.com/iysnDNb.png)
+![fú](https://i.imgur.com/5pbzo7b.png)
 
 
 ### Special features:
-*yabai wm ( similar to i3-gaps in linux ) and skhd ( hotkey daemon )* :
+- *changed from iterm2 to alacritty (fastest terminal emulator in the universe )*
+- *yabai wm ( similar to i3-gaps in linux ) and skhd ( hotkey daemon )* :
 ( *preview* )
 [yabai + tmux+ nvim](https://imgur.com/a/xbdRl5J)
 
