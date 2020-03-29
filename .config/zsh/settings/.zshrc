@@ -4,12 +4,13 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 ## Options
 
-ZSH_THEME="spaceship"
+ZSH_THEME="smt"
 HYPHEN_INSENSITIVE="true"
 
 ## Plugins
 plugins=(git brew osx)
 fpath=(/usr/local/share/zsh-completions $fpath)
+eval "$(jump shell)"
 
 autoload -U compinit && compinit
 
@@ -31,12 +32,21 @@ alias v="nvim"
 alias vc="nvim ~/.config/nvim/init.vim"
 alias zc="nvim ~/.zshrc"
 alias szc="source ~/.zshrc"
-alias ls="colorls -A --gs --sd"
+alias tc="nvim ~/.config/tmux/tmux.conf"
+alias ls="gls --color -AF --group-directories-first"
 alias please="sudo"
 alias pohon="tree"
-alias tmux="tmux -f ~/.config/tmux/tmux.conf"
-alias gitgud="~/Gitgud/"
+alias tmux="tmux -f ~/.config/tmux/tmux.conf new -s padul"
+alias ggh8="~/Gitgud/h8"
 alias ctags="`brew --prefix`/bin/ctags"
+alias nggolek="fzf --preview 'cat {}'"
+alias ogvimrc="vim ~/.vimrc"
+alias ogvim="vim"
+alias dots="cd ~/Gitgud/mbp-dotfiles"
+alias skue="sequelize"
+alias alac="nvim ~/.config/alacritty/alacritty.yml"
+alias pgstart="pg_ctl -D /usr/local/var/postgres start"
+alias pgstop="pg_ctl -D /usr/local/var/postgres stop"
 
 ## Application
 
@@ -44,12 +54,24 @@ alias ctags="`brew --prefix`/bin/ctags"
 
 export PATH=/usr/local/sbin:$PATH
 
+# Go
+
+export GOPATH=$HOME/Gitgud/non-essential/go-reng
+export GOBIN=$HOME/Gitgud/non-essential/go-reng/bin
+export PATH=$PATH:$GOBIN
+
 # Ruby
 
 export PATH=$PATH:/usr/local/lib/ruby/gems/2.7.0/bin
 export PATH=/usr/local/opt/ruby/bin:$PATH
 export LDFLAGS="-L/usr/local/opt/ruby/lib"
 export CPPFLAGS="-I/usr/local/opt/ruby/include"
+
+# ncurses
+
+export PATH=/usr/local/opt/ncurses/bin:$PATH
+export LDFLAGS="-L/usr/local/opt/ncurses/lib"
+export CPPFLAGS="-I/usr/local/opt/ncurses/include"
 
 # Java
 
@@ -63,3 +85,4 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
