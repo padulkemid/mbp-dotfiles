@@ -160,12 +160,16 @@ vnoremap L g_
 
 map q: :q
 
+nmap <leader>tp :tabp<CR>
 nmap <leader>tn :tabn<CR>
 nmap <leader>te :tabe<CR>
 nmap <leader>tc :tabc<CR>
 
 " command dewa, hati-hati
 nmap <leader>f :find<space>
+
+" for easy motion
+map <leader>e <Plug>(easymotion-prefix)
 
 "}}}
 
@@ -182,21 +186,27 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 
+" Vim Another Omniscience Being
+Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+
 " Godsense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Utilites
 Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
-Plug 'honza/vim-snippets'
+Plug 'andymass/vim-matchup'
+Plug 'easymotion/vim-easymotion'
 
-" Web
+" Javascript
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'posva/vim-vue'
 
-" Aesthetics
-Plug 'junegunn/seoul256.vim'
-Plug 'Yggdroot/indentLine'
+" Go, for later
+" Plug 'fatih/vim-go'
 
 call plug#end()
 "}}}
@@ -204,10 +214,45 @@ call plug#end()
 " Plugin Configurations
 "{{{
 
+" Goyo and Limelight
+"{{{
+function! s:goyo_enter()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status off
+    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  endif
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  Limelight
+  " ...
+endfunction
+
+function! s:goyo_leave()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status on
+    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  endif
+  set showmode
+  set showcmd
+  set scrolloff=5
+  Limelight!
+  " ...
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+"}}}
+
 " vim-javascript
 "{{{
 let g:vim_jsx_pretty_colorful_config=1
 "}}}
+
+" vim-go
+" {{{
+let g:go_def_mapping_enabled = 0
+" }}}
 
 " NERDTree
 "{{{
@@ -221,16 +266,7 @@ let g:NERDTreeDirArrowCollapsible = '↡'
 nmap \ :NERDTreeToggle<CR>
 "}}}
 
-" IndentLine
-"{{{
-let g:indentLine_char='▏'
-let g:indentLine_color_gui='#5f875f'
-"}}}
-
 " CoC Nvim
-"{{{
-
-"" Core
 "{{{
 set pumheight=10
 inoremap <silent><expr> <TAB>
@@ -267,9 +303,6 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=0 OR   :call CocAction('runCommand', 'editor.action.organizeImport')
 "}}}
-
-"}}}
-
 
 "}}}
 
