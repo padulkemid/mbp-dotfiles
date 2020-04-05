@@ -170,6 +170,7 @@ nmap <leader>f :find<space>
 
 " for easy motion
 map <leader>e <Plug>(easymotion-prefix)
+map <silent> <leader>ew <Plug>(easymotion-bd-w)
 
 "}}}
 
@@ -188,8 +189,8 @@ Plug 'tpope/vim-repeat'
 
 " Vim Another Omniscience Being
 Plug 'junegunn/seoul256.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
+" Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/limelight.vim'
 
 " Godsense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -199,6 +200,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'andymass/vim-matchup'
 Plug 'easymotion/vim-easymotion'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " Javascript
 Plug 'pangloss/vim-javascript'
