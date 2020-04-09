@@ -114,7 +114,8 @@ set smarttab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
-set list listchars=trail:»,tab:»-
+set nowrap
+set listchars=trail:»,tab:»-
 set linebreak
 
 "" Delete trailing whitespace
@@ -183,32 +184,29 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Vim Omnipotent Being
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-repeat'
 
 " Vim Another Omniscience Being
 Plug 'junegunn/seoul256.vim'
-" Plug 'junegunn/goyo.vim'
-" Plug 'junegunn/limelight.vim'
 
 " Godsense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Utilites
 Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
-Plug 'andymass/vim-matchup'
 Plug 'easymotion/vim-easymotion'
+Plug 'jiangmiao/auto-pairs'
+
+" Web
+Plug 'mattn/emmet-vim'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'andymass/vim-matchup'
 
 " Javascript
 Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'posva/vim-vue'
-
-" Go, for later
-" Plug 'fatih/vim-go'
+Plug 'maxmellon/vim-jsx-pretty'
 
 call plug#end()
 "}}}
@@ -216,45 +214,16 @@ call plug#end()
 " Plugin Configurations
 "{{{
 
-" Goyo and Limelight
-"{{{
-function! s:goyo_enter()
-  if executable('tmux') && strlen($TMUX)
-    silent !tmux set status off
-    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  endif
-  set noshowmode
-  set noshowcmd
-  set scrolloff=999
-  Limelight
-  " ...
-endfunction
-
-function! s:goyo_leave()
-  if executable('tmux') && strlen($TMUX)
-    silent !tmux set status on
-    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  endif
-  set showmode
-  set showcmd
-  set scrolloff=5
-  Limelight!
-  " ...
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-"}}}
-
 " vim-javascript
 "{{{
 let g:vim_jsx_pretty_colorful_config=1
 "}}}
 
-" vim-go
-" {{{
-let g:go_def_mapping_enabled = 0
-" }}}
+" Emmet
+"{{{
+let g:user_emmet_leader_key='<c-e>'
+let g:user_emmet_mode='iv'
+"}}}
 
 " NERDTree
 "{{{
@@ -266,6 +235,30 @@ let g:NERDTreeDirArrowExpandable = '↠'
 let g:NERDTreeDirArrowCollapsible = '↡'
 
 nmap \ :NERDTreeToggle<CR>
+"}}}
+
+" NERDCommenter
+"{{{
+let g:NERDSpaceDelims=1
+let g:ft = ''
+function! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+      endif
+    endif
+  endif
+endfunction
+function! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
+endfunction
 "}}}
 
 " CoC Nvim
@@ -323,8 +316,7 @@ command Q :q
 comman Wq :wq
 
 " ejs
-autocmd BufNewFile *.ejs set filetype=html
-autocmd BufRead *.ejs set filetype=html
+autocmd BufRead,BufNewFile *.ejs set filetype=html
 
 "}}}
 
