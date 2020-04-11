@@ -151,9 +151,6 @@ map <C-l> <C-W>l
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-noremap <C-d> <C-d>zz
-noremap <C-u> <C-u>zz
-
 nnoremap H ^
 nnoremap L $
 vnoremap H ^
@@ -167,7 +164,8 @@ nmap <leader>te :tabe<CR>
 nmap <leader>tc :tabc<CR>
 
 " command dewa, hati-hati
-nmap <leader>f :find<space>
+nmap <leader>f :Files<CR>
+nmap <leader>ag :Ag<space>
 
 " for easy motion
 map <leader>e <Plug>(easymotion-prefix)
@@ -184,9 +182,11 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Vim Omnipotent Being
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 
 " Vim Another Omniscience Being
 Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/fzf.vim'
 
 " Godsense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -197,6 +197,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
+Plug 'psliwka/vim-smoothie'
 
 " Web
 Plug 'mattn/emmet-vim'
@@ -208,11 +209,23 @@ Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 Plug 'maxmellon/vim-jsx-pretty'
 
+" Markdown
+Plug 'reedes/vim-pencil'
+Plug 'godlygeek/tabular', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+
 call plug#end()
 "}}}
 
 " Plugin Configurations
 "{{{
+
+" fzf
+"{{{
+set rtp+=/usr/local/opt/fzf
+let g:fzf_layout= { 'down': '~60%' }
+
+"}}}
 
 " vim-javascript
 "{{{
@@ -315,8 +328,13 @@ command W :w
 command Q :q
 comman Wq :wq
 
-" ejs
-autocmd BufRead,BufNewFile *.ejs set filetype=html
+" vue
+autocmd BufRead,BufNewFile *.vue set filetype=vue
+
+" vim-pencil + md
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile COMMIT_EDITMSG call pencil#init({'wrap': 'soft'})
+                                    \ | set tw=0
 
 "}}}
 
