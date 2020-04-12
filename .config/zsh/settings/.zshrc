@@ -26,27 +26,29 @@ export EDITOR=nvim
 
 ## Aliases
 
+# == CORE == 
 alias c="clear"
 alias x="exit"
 alias v="nvim"
 alias vc="nvim ~/.config/nvim/init.vim"
-alias zc="nvim ~/.zshrc"
-alias szc="source ~/.zshrc"
-alias tc="nvim ~/.config/tmux/tmux.conf"
+alias zc="nvim ~/.config/zsh/settings/.zshrc"
+alias szc="source ~/.config/zsh/settings/.zshrc"
+alias dots="cd ~/Gitgud/mbp-dotfiles"
+alias ggh8="~/Gitgud/h8"
 alias ls="gls --color -AF --group-directories-first"
+# == CUSTOM ==
 alias please="sudo"
 alias pohon="tree"
+# == APPS ==
+alias tc="nvim ~/.config/tmux/tmux.conf"
 alias tmux="tmux -f ~/.config/tmux/tmux.conf new -s padul"
-alias ggh8="~/Gitgud/h8"
 alias ctags="`brew --prefix`/bin/ctags"
 alias nggolek="fzf --preview 'cat {}'"
-alias ogvimrc="vim ~/.vimrc"
-alias ogvim="vim"
-alias dots="cd ~/Gitgud/mbp-dotfiles"
 alias skue="sequelize"
 alias alac="nvim ~/.config/alacritty/alacritty.yml"
 alias pgstart="pg_ctl -D /usr/local/var/postgres start"
 alias pgstop="pg_ctl -D /usr/local/var/postgres stop"
+alias live="live-server --host=localhost"
 
 ## Application
 
@@ -66,6 +68,9 @@ export PATH=$PATH:/usr/local/lib/ruby/gems/2.7.0/bin
 export PATH=/usr/local/opt/ruby/bin:$PATH
 export LDFLAGS="-L/usr/local/opt/ruby/lib"
 export CPPFLAGS="-I/usr/local/opt/ruby/include"
+
+# curl
+export PATH=/usr/local/opt/curl/bin:$PATH
 
 # ncurses
 
