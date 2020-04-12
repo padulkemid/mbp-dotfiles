@@ -326,7 +326,7 @@ command MakeTags !ctags -R .
 " Typo
 command W :w
 command Q :q
-comman Wq :wq
+command Wq :wq
 
 " vue
 autocmd BufRead,BufNewFile *.vue set filetype=vue
