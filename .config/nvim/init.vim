@@ -164,12 +164,13 @@ nmap <leader>te :tabe<CR>
 nmap <leader>tc :tabc<CR>
 
 " command dewa, hati-hati
-nmap <leader>f :Files<CR>
+nmap <leader>f :find<space>
 nmap <leader>ag :Ag<space>
 
 " for easy motion
 map <leader>e <Plug>(easymotion-prefix)
 map <silent> <leader>ew <Plug>(easymotion-bd-w)
+map <silent> <leader>ee <Plug>(easymotion-bd-e)
 
 "}}}
 
