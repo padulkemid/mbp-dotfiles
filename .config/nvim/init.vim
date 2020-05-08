@@ -38,6 +38,7 @@ set nowritebackup
 set splitright
 set splitbelow
 set fileformats=unix,dos,mac
+set textwidth=80
 "}}}
 
 " Undo
@@ -54,6 +55,7 @@ set undodir=~/.config/nvim/undodir
 syntax on
 set termguicolors
 colorscheme seoul256-light
+set colorcolumn=80
 
 nmap <silent> <leader><leader> :noh<CR>
 "}}}
@@ -80,7 +82,7 @@ let gra = "%#LineNr#"
 let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
 let ro  = "%{&readonly ? '[RO] ' : ''}"
 let ft  = " %{len(&filetype) ? '['.&filetype.'] ' : ''}"
-let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : 'aury'}"
+let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : ''}"
 let sep = ' %= '
 let pos = ' %-12(%l : %c%V%) '
 let pct = ' %P '
@@ -164,13 +166,17 @@ nmap <leader>te :tabe<CR>
 nmap <leader>tc :tabc<CR>
 
 " command dewa, hati-hati
-nmap <leader>f :find<space>
+nmap <leader>f :CtrlP<CR>
 nmap <leader>ag :Ag<space>
 
 " for easy motion
 map <leader>e <Plug>(easymotion-prefix)
 map <silent> <leader>ew <Plug>(easymotion-bd-w)
 map <silent> <leader>ee <Plug>(easymotion-bd-e)
+
+" for easy algin
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
 
 "}}}
 
@@ -188,6 +194,7 @@ Plug 'tpope/vim-unimpaired'
 " Vim Another Omniscience Being
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
 
 " Godsense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -199,10 +206,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'psliwka/vim-smoothie'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'terryma/vim-multiple-cursors'
 
 " Web
 Plug 'mattn/emmet-vim'
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'andymass/vim-matchup'
 
 " Javascript
@@ -211,9 +219,7 @@ Plug 'posva/vim-vue'
 Plug 'maxmellon/vim-jsx-pretty'
 
 " Markdown
-Plug 'reedes/vim-pencil'
-Plug 'godlygeek/tabular', { 'for': 'markdown' }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown'
 
 call plug#end()
 "}}}
@@ -231,6 +237,17 @@ let g:fzf_layout= { 'down': '~60%' }
 " vim-javascript
 "{{{
 let g:vim_jsx_pretty_colorful_config=1
+"}}}
+
+" vim-markdown
+" {{{
+let g:vim_markdown_folding_style_pythonic = 1
+" }}}
+
+" CtrlP
+"{{{
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|\.git/\|vendor\|_site\|_production*'
 "}}}
 
 " Emmet
@@ -292,11 +309,6 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
@@ -334,8 +346,6 @@ autocmd BufRead,BufNewFile *.vue set filetype=vue
 
 " vim-pencil + md
 autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile COMMIT_EDITMSG call pencil#init({'wrap': 'soft'})
-                                    \ | set tw=0
 
 "}}}
 
