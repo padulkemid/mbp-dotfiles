@@ -39,6 +39,7 @@ set splitright
 set splitbelow
 set fileformats=unix,dos,mac
 set textwidth=80
+set re=0
 "}}}
 
 " Undo
@@ -166,7 +167,7 @@ nmap <leader>te :tabe<CR>
 nmap <leader>tc :tabc<CR>
 
 " command dewa, hati-hati
-nmap <leader>f :CtrlP<CR>
+nmap <leader>f :CtrlP .<CR>
 nmap <leader>ag :Ag<space>
 
 " for easy motion
@@ -214,9 +215,11 @@ Plug 'mattn/emmet-vim'
 Plug 'andymass/vim-matchup'
 
 " Javascript
-Plug 'pangloss/vim-javascript'
+Plug 'yuezk/vim-js'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'posva/vim-vue'
 Plug 'maxmellon/vim-jsx-pretty'
+
 
 " Markdown
 Plug 'plasticboy/vim-markdown'
