@@ -220,6 +220,10 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'posva/vim-vue'
 Plug 'maxmellon/vim-jsx-pretty'
 
+" GraphQL
+
+Plug 'jparise/vim-graphql'
+
 " Markdown
 Plug 'plasticboy/vim-markdown'
 
