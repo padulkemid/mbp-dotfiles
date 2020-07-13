@@ -21,7 +21,10 @@
   "prettier.jsxBracketSameLine": true,
   "prettier.arrowParens": "always",
   "prettier.trailingComma": "es5",
-  "prettier.endOfLine": "lf"
+  "prettier.endOfLine": "lf",
 
+  "go.disable": {
+    "workspaceFolders": true
+  }
 }
 

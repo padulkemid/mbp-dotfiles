@@ -220,7 +220,6 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'posva/vim-vue'
 Plug 'maxmellon/vim-jsx-pretty'
 
-
 " Markdown
 Plug 'plasticboy/vim-markdown'
 
@@ -331,6 +330,9 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=0 OR   :call CocAction('runCommand', 'editor.action.organizeImport')
+
+autocmd FileType go nmap gtj :CocCommand go.tags.add json<CR>
+
 "}}}
 
 "}}}
