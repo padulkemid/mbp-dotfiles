@@ -201,7 +201,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Utilites
-Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
@@ -216,12 +215,15 @@ Plug 'andymass/vim-matchup'
 
 " Javascript
 Plug 'yuezk/vim-js'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'posva/vim-vue'
 Plug 'maxmellon/vim-jsx-pretty'
 
-" GraphQL
+" Typescript
+Plug 'HerringtonDarkholme/yats.vim'
 
+" Dart
+Plug 'dart-lang/dart-vim-plugin'
+
+" GraphQL
 Plug 'jparise/vim-graphql'
 
 " Markdown
@@ -260,18 +262,6 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|\.git/\|vendor\|_site\|_pro
 "{{{
 let g:user_emmet_leader_key='<c-e>'
 let g:user_emmet_mode='iv'
-"}}}
-
-" NERDTree
-"{{{
-let NERDTreeShowHidden=1
-let NERDTreeIgnore=['DS_Store', 'node_modules', 'vendor']
-let NERDTreeShowLineNumbers=1
-let NERDTreeQuitOnOpen=1
-let g:NERDTreeDirArrowExpandable = '↠'
-let g:NERDTreeDirArrowCollapsible = '↡'
-
-nmap \ :NERDTreeToggle<CR>
 "}}}
 
 " NERDCommenter
