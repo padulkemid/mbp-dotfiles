@@ -329,6 +329,16 @@ autocmd FileType go nmap gtj :CocCommand go.tags.add json<CR>
 
 "}}}
 
+" CoC Extensions
+"{{{
+  " - coc-go
+  " - coc-flutter
+  " - coc-prettier
+  " - coc-eslint
+  " - coc-tsserver
+  " - coc-json
+"}}}
+
 "}}}
 
 
