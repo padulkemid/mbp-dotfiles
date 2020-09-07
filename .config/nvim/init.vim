@@ -220,9 +220,6 @@ Plug 'maxmellon/vim-jsx-pretty'
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
 
-" Dart
-Plug 'dart-lang/dart-vim-plugin'
-
 " GraphQL
 Plug 'jparise/vim-graphql'
 
@@ -332,7 +329,6 @@ autocmd FileType go nmap gtj :CocCommand go.tags.add json<CR>
 " CoC Extensions
 "{{{
   " - coc-go
-  " - coc-flutter
   " - coc-prettier
   " - coc-eslint
   " - coc-tsserver
