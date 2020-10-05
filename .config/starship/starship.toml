@@ -1,6 +1,6 @@
 [character]
-symbol = "aury 愛:"
-error_symbol = "universe 悪:"
+symbol = "aury ▲ -"
+error_symbol = "universe ▼ -"
 use_symbol_for_status = true
 style_success = "red"
 style_failure = "blue"

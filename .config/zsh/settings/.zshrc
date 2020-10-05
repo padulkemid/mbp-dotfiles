@@ -44,11 +44,9 @@ alias tc="nvim ~/.config/tmux/tmux.conf"
 alias tmux="tmux -f ~/.config/tmux/tmux.conf new -s padul"
 alias ctags="`brew --prefix`/bin/ctags"
 alias nggolek="fzf --preview 'cat {}'"
-alias skue="sequelize"
 alias alac="nvim ~/.config/alacritty/alacritty.yml"
 alias pgstart="pg_ctl -D /usr/local/var/postgres start"
 alias pgstop="pg_ctl -D /usr/local/var/postgres stop"
-alias live="live-server --host=localhost"
 
 ## Application
 
@@ -58,8 +56,8 @@ export PATH=/usr/local/sbin:$PATH
 
 # Go
 
-export GOPATH=$HOME/Gitgud/non-essential/go-reng
-export GOBIN=$HOME/Gitgud/non-essential/go-reng/bin
+export GOPATH=$HOME/Gitgud/work/goreng
+export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 
 # Ruby
@@ -90,4 +88,8 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# starship
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
+eval "$(starship init zsh)"
 
