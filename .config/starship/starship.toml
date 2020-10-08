@@ -1,9 +1,7 @@
 [character]
-symbol = "aury ▲ -"
-error_symbol = "universe ▼ -"
+success_symbol = "[aury ▲ -](red)"
+error_symbol = "[universe ▼ -](blue)"
 use_symbol_for_status = true
-style_success = "red"
-style_failure = "blue"
 
 [conda]
 symbol = " "
