@@ -343,9 +343,6 @@ autocmd FileType go nmap gtj :CocCommand go.tags.add json<CR>
 " Custom Commands
 "{{{
 
-" Tags
-command MakeTags !ctags -R .
-
 " Typo
 command W :w
 command Q :q
