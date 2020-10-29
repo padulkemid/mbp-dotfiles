@@ -1,3 +1,12 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhistcnt =1
-let g:netrw_dirhist_1='/Users/padulkemid/.config/nvim'
+let g:netrw_dirhist_1='/Users/padulkemid/Gitgud/non-essential/revamped/content/blog/flour-clay'
+let g:netrw_dirhist_0='/Users/padulkemid/Gitgud/non-essential/revamped/content/blog/cake-tray'
+let g:netrw_dirhist_9='/Users/padulkemid/Gitgud/non-essential/node-bulletin-board/bulletin-board-app/backend'
+let g:netrw_dirhist_8='/Users/padulkemid/.config/nvim'
+let g:netrw_dirhist_7='/Users/padulkemid/Gitgud'
+let g:netrw_dirhist_6='/Users/padulkemid/.config/nvim'
+let g:netrw_dirhist_5='/Users/padulkemid/.config'
+let g:netrw_dirhist_4='/Users/padulkemid/.config/nvim'
+let g:netrw_dirhist_3='/Users/padulkemid'
+let g:netrw_dirhist_2='/Users/padulkemid/.config'

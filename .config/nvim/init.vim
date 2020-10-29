@@ -55,7 +55,7 @@ set undodir=~/.config/nvim/undodir
 "{{{
 syntax on
 set termguicolors
-colorscheme seoul256-light
+colorscheme iceberg
 set colorcolumn=80
 
 nmap <silent> <leader><leader> :noh<CR>
@@ -187,13 +187,15 @@ xmap ga <Plug>(EasyAlign)
 "{{{
 call plug#begin('~/.local/share/nvim/plugged')
 
+" Colorscheme
+Plug 'cocopon/iceberg.vim'
+
 " Vim Omnipotent Being
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
 " Vim Another Omniscience Being
-Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 
@@ -324,15 +326,6 @@ command! -nargs=0 OR   :call CocAction('runCommand', 'editor.action.organizeImpo
 
 autocmd FileType go nmap gtj :CocCommand go.tags.add json<CR>
 
-"}}}
-
-" CoC Extensions
-"{{{
-  " - coc-go
-  " - coc-prettier
-  " - coc-eslint
-  " - coc-tsserver
-  " - coc-json
 "}}}
 
 "}}}

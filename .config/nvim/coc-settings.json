@@ -1,11 +1,12 @@
 {
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
+    "javascriptreact",
     "typescript",
     "typescriptreact",
     "json",
-    "javascriptreact",
-    "typescript.tsx"
+    "dart",
+    "go"
   ],
 
   "diagnostic.errorSign": "•",
@@ -27,4 +28,3 @@
     "workspaceFolders": true
   }
 }
-
