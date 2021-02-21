@@ -1,52 +1,56 @@
+#environment
+env: 
+  TERM: xterm-256color
+
 ## titlebar
 window:
   padding:
     x: 4
-    y: 0
+    y: 12
   decorations: full
   title: padulcritty
 
 ## font
 font:
   normal:
-    family: Iosevka
+    family: Inconsolata Nerd Font Mono
     style: Regular
   bold:
-    family: Iosevka
+    family: Inconsolata Nerd Font Mono
     style: Bold
   italic:
-    family: Iosevka
+    family: SF Mono Powerline
     style: Italic
   bold_italic:
-    family: Iosevka
+    family: SF Mono Powerline
     style: Bold Italic
-  size: 13.0
+  size: 14.0
   use_thin_strokes: true
 
 ## color
 draw_bold_text_with_bright_colors: true
 colors:
   primary:
-    background: '0xe1e1e1'
-    foreground: '0x606060'
+    background: '0x161821'
+    foreground: '0xd2d4de'
   normal:
-    black: '0x606060'
-    red: '0xbe7472'
-    green: '0x709872'
-    yellow: '0xbd9873'
-    blue: '0x7199bc'
-    magenta: '0x997498'
-    cyan: '0x719899'
-    white: '0xe9e9e9'
+    black:   '0x161821'
+    red:     '0xe27878'
+    green:   '0xb4be82'
+    yellow:  '0xe2a478'
+    blue:    '0x84a0c6'
+    magenta: '0xa093c7'
+    cyan:    '0x89b8c2'
+    white:   '0xc6c8d1'
   bright:
-    black: '0x4a4a4a'
-    red: '0x9a1200'
-    green: '0x006f00'
-    yellow: '0xe09871'
-    blue: '0x0098bd'
-    magenta: '0x9a1c72'
-    cyan: '0x009799'
-    white: '0xf1f1f1'
+    black:   '0x6b7089'
+    red:     '0xe98989'
+    green:   '0xc0ca8e'
+    yellow:  '0xe9b189'
+    blue:    '0x91acd1'
+    magenta: '0xada0d3'
+    cyan:    '0x95c4ce'
+    white:   '0xd2d4de'
 
 ## shell
 shell:
@@ -56,3 +60,7 @@ shell:
 
 ## padulcritty is the best :D
 dynamic_title: false
+
+## custom keymap
+key_bindings:
+  - { key: Back, mods: Super, chars: "\x15" }
